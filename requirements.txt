@@ -1,2 +1,5 @@
-numpy
-scikit-learn
+joblib==1.5.3
+numpy==1.23.0
+scikit-learn==1.6.1
+scipy==1.13.1
+threadpoolctl==3.6.0
