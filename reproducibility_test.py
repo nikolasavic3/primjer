@@ -1,22 +1,27 @@
 # Simple ML Reproducibility Test
-# Matrix operations can give DIFFERENT results on Mac vs Linux!
+# Eigenvalue decomposition WILL differ between BLAS implementations!
 
 import numpy as np
 
 np.random.seed(42)
 
-# Create matrices
-A = np.random.rand(100, 100)
-B = np.random.rand(100, 100)
+# Create a symmetric matrix (for eigenvalue decomposition)
+A = np.random.rand(50, 50)
+A = A @ A.T  # Make symmetric
 
-# Matrix multiplication - uses BLAS (Accelerate on Mac, OpenBLAS on Linux)
-C = A @ B
+# Eigenvalue decomposition - HIGHLY BLAS dependent!
+eigenvalues, eigenvectors = np.linalg.eig(A)
 
-# These values may DIFFER slightly between Mac and Linux!
+# Sort eigenvalues for consistent comparison
+idx = np.argsort(eigenvalues)[::-1]
+eigenvalues = eigenvalues[idx]
+
+# These WILL differ between Accelerate and OpenBLAS
 print(f"NumPy version: {np.__version__}")
-print(f"Matrix result checksum: {C.sum():.15f}")
-print(f"Matrix [0,0] element:   {C[0,0]:.15f}")
+print(f"Top 5 eigenvalues: {eigenvalues[:5]}")
+print(f"Eigenvalue sum: {eigenvalues.sum():.15f}")
+print(f"Eigenvector hash: {hash(eigenvectors.tobytes())}")
 
-# Save for comparison
-with open("result.txt", "w") as f:
-    f.write(f"{C.sum():.15f}\n")
+# Show BLAS info
+print(f"\nBLAS config:")
+np.show_config()

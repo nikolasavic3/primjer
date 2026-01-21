@@ -14,8 +14,8 @@ dependencies:
   - double-conversion=3.3.1=h286801f_0
   - ffmpeg=7.1.1=gpl_h670d5b4_111
   - font-ttf-dejavu-sans-mono=2.37=hab24e00_0
-  - font-ttf-inconsolata=3.000=h77eed37_0
-  - font-ttf-source-code-pro=2.038=h77eed37_0
+  - font-ttf-inconsolata=3.0=h77eed37_0
+  - font-ttf-source-code-pro=2.38=h77eed37_0
   - font-ttf-ubuntu=0.83=h77eed37_3
   - fontconfig=2.15.0=h1383a14_1
   - fonts-conda-ecosystem=1=0
