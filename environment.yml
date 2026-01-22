@@ -1,8 +1,0 @@
-name: primjer
-channels:
-  - conda-forge
-dependencies:
-  - numpy==1.23
-  - opencv
-  - python=3.9
-  - scikit-learn
